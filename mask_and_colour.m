@@ -1,4 +1,4 @@
-im_rgb = imread('data/6.jpg');
+im_rgb = imread('data/0.jpg');
 
 park_mask = zeros([size(im_rgb(:,:,1)),8]);
 agg = zeros([size(im_rgb(:,:,1))]);
@@ -32,8 +32,8 @@ imshow(im_hsv(:,:,1));
 %imshow(im_rgb(:,:,2)+uint8(agg*255));
 
 for i = 1:8 % for each lot
-    temp = abs((im_hsv(:,:,1) .* park_mask(:,:,i)) - 0.3) < 0.2; % is the lot areas hue value 0.2 +/- 0.05 (green tarmac)?
-    lot_free(i) = sum(sum(temp)) > sum(sum(park_mask(:,:,i)))*0.7; % is at least 50% of the lot area green then the lot should be free
+    temp = abs((im_hsv(:,:,1) .* park_mask(:,:,i)) - 0.3) < 0.2; % is the lot areas hue value 0.3 +/- 0.2 (green tarmac)?
+    lot_free(i) = sum(sum(temp)) > sum(sum(park_mask(:,:,i)))*0.8; % is at least 80% of the lot area green then the lot should be free
 end
 
 disp('Number of free lots')
